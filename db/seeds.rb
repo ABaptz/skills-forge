@@ -1,20 +1,3 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
-# User.destroy_all
-# Puts "creating users..."
-# User.create!(
-#   email: "sosssss@gmail.com", 
-#   username:"SylvieD"
-# )
-
 puts "Cleaning database..."
 
 Message.destroy_all
@@ -39,32 +22,43 @@ yann = User.create!(
 puts "Creating chats..."
 
 sylvie_energie_chat = Chat.create!(
-  title: "sylvie , gestion consommations de gaz et electricité",
+  title: "Sylvie, gas and electricity consumption management",
   user: sylvie
 )
 
-yann_cuisine_chat = Chat.create!(
-  title: "recettes de cuisine du dimanche soir",
+yann_recipes_chat = Chat.create!(
+  title: "Sunday night cooking recipes",
+  user: yann
+)
+
+yann_nba_chat = Chat.create!(
+  title: "NBA highlights from the previous day",
+  user: yann
+)
+
+yann_news_chat = Chat.create!(
+  title: "Weekly newsletter intelligence",
   user: yann
 )
 
 puts "Creating messages..."
 
-yann_chat_cuisine_message_n1 = Message.create!(
+Message.create!(
   role: "user",
-  content: "Every Sunday evening, I want to receive easy recipe ideas to cook for my week",
-  chat: yann_cuisine_chat
+  content: "Every Sunday evening, I want to receive easy recipe ideas to cook for my week.",
+  chat: yann_recipes_chat
 )
 
-yann_chat_cuisine_message_n2 = Message.create!(
+Message.create!(
   role: "assistant",
-  content: "What ingredients do you usually have, how many people are you cooking for, and do you have any dietary constraints or preferences?"
+  content: "What ingredients do you usually have, how many people are you cooking for, and do you have any dietary constraints or preferences?",
+  chat: yann_recipes_chat
 )
 
 puts "Creating automations..."
 
-sylvie_automation = Automation.create!(
-  chat: sylvie_chat,
+Automation.create!(
+  chat: sylvie_energie_chat,
   title: "Household Electricity, Gas and Water Tracking",
   llm_provider: "OpenAI",
   content: <<~MARKDOWN
@@ -96,8 +90,8 @@ sylvie_automation = Automation.create!(
   MARKDOWN
 )
 
-yann_recipes_automation = Automation.create!(
-  chat: yann_food_chat,
+Automation.create!(
+  chat: yann_recipes_chat,
   title: "Easy Sunday Evening Recipes",
   llm_provider: "Anthropic",
   content: <<~MARKDOWN
@@ -130,7 +124,7 @@ yann_recipes_automation = Automation.create!(
   MARKDOWN
 )
 
-yann_NBA_automation = Automation.create!(
+Automation.create!(
   chat: yann_nba_chat,
   title: "Previous Day NBA Highlights Summary",
   llm_provider: "Google",
@@ -142,7 +136,6 @@ yann_NBA_automation = Automation.create!(
     the previous day without requiring the user to watch every game.
 
     ## Expected Analysis
-    For each relevant game:
     - Decisive plays
     - Outstanding individual performances
     - Important runs or comebacks
@@ -161,7 +154,7 @@ yann_NBA_automation = Automation.create!(
   MARKDOWN
 )
 
-yann_newsletters_automation = Automation.create!(
+Automation.create!(
   chat: yann_news_chat,
   title: "Weekly Newsletter Intelligence",
   llm_provider: "OpenAI",
@@ -191,8 +184,8 @@ yann_newsletters_automation = Automation.create!(
     - Importance
     - Potential consequences
 
-    For each **Priority 1** topic:
-    provide an approximately **100-word summary** explaining:
+    For each **Priority 1** topic, provide an approximately
+    **100-word summary** explaining:
     - what happened
     - why it matters
     - the possible consequences
@@ -203,4 +196,5 @@ puts "Seed completed!"
 
 puts "#{User.count} users created"
 puts "#{Chat.count} chats created"
+puts "#{Message.count} messages created"
 puts "#{Automation.count} automations created"
