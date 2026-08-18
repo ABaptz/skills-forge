@@ -1,2 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center m-5">
+    <div class="col-6 m-5">
+      <h1 class="text-center fs-1 m-5">Your next <strong>skill</strong> awaits you!</h1>
+      <div class="container d-flex justify-content-center">
+        <%= button_to "Create a new skill", chats_path, class: "btn btn-primary p-2" %>
+      </div>
+    </div>
+  </div>
+</div>
