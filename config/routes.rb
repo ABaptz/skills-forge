@@ -18,8 +18,9 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
     resources :automations, only: [:create]
   end
-  
+
   resources :automations, only: [:index, :show]
-  # resources :pages only: []
+
+  get "/privacy", to: "pages#privacy"
   
 end
