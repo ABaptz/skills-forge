@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$body-font: "Satoshi-Regular", "Helvetica", "sans-serif";
+$headers-font: "Satoshi-Regular", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
@@ -14,3 +14,128 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+@font-face {
+  font-family: 'Satoshi-Light';
+  src: font-url('Satoshi-Light.woff2') format('woff2'),
+       font-url('Satoshi-Light.woff') format('woff'),
+       font-url('Satoshi-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi-LightItalic';
+  src: font-url('Satoshi-LightItalic.woff2') format('woff2'),
+       font-url('Satoshi-LightItalic.woff') format('woff'),
+       font-url('Satoshi-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Satoshi-Regular';
+  src: font-url('Satoshi-Regular.woff2') format('woff2'),
+       font-url('Satoshi-Regular.woff') format('woff'),
+       font-url('Satoshi-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi-Italic';
+  src: font-url('Satoshi-Italic.woff2') format('woff2'),
+       font-url('Satoshi-Italic.woff') format('woff'),
+       font-url('Satoshi-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Satoshi-Medium';
+  src: font-url('Satoshi-Medium.woff2') format('woff2'),
+       font-url('Satoshi-Medium.woff') format('woff'),
+       font-url('Satoshi-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi-MediumItalic';
+  src: font-url('Satoshi-MediumItalic.woff2') format('woff2'),
+       font-url('Satoshi-MediumItalic.woff') format('woff'),
+       font-url('Satoshi-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Satoshi-Bold';
+  src: font-url('Satoshi-Bold.woff2') format('woff2'),
+       font-url('Satoshi-Bold.woff') format('woff'),
+       font-url('Satoshi-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi-BoldItalic';
+  src: font-url('Satoshi-BoldItalic.woff2') format('woff2'),
+       font-url('Satoshi-BoldItalic.woff') format('woff'),
+       font-url('Satoshi-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Satoshi-Black';
+  src: font-url('Satoshi-Black.woff2') format('woff2'),
+       font-url('Satoshi-Black.woff') format('woff'),
+       font-url('Satoshi-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi-BlackItalic';
+  src: font-url('Satoshi-BlackItalic.woff2') format('woff2'),
+       font-url('Satoshi-BlackItalic.woff') format('woff'),
+       font-url('Satoshi-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 900.0;
+*
+* available axes:
+'wght' (range from 300.0 to 900.0
+*/
+@font-face {
+  font-family: 'Satoshi-Variable';
+  src: font-url('Satoshi-Variable.woff2') format('woff2'),
+       font-url('Satoshi-Variable.woff') format('woff'),
+       font-url('Satoshi-Variable.ttf') format('truetype');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 900.0;
+*
+* available axes:
+'wght' (range from 300.0 to 900.0
+*/
+@font-face {
+  font-family: 'Satoshi-VariableItalic';
+  src: font-url('Satoshi-VariableItalic.woff2') format('woff2'),
+       font-url('Satoshi-VariableItalic.woff') format('woff'),
+       font-url('Satoshi-VariableItalic.ttf') format('truetype');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: italic;
+}
