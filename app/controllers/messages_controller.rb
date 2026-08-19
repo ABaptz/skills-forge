@@ -86,7 +86,7 @@ class MessagesController < ApplicationController
     Once the user confirms the recap, write exactly two things:
 
     - One line saying the brief is ready.
-    - One line telling them to click the {{GENERATE_BUTTON_LABEL}} button.
+    - One line telling them to click the {{GENERATE_BUTTON_LABEL}} button. 
     Then stop. Do not add anything else.
 
     # OUT OF SCOPE
