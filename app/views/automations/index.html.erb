@@ -1,0 +1,13 @@
+<div class="list-group">
+  <% @automations.each do |automation| %>
+    <%= link_to automation_path(automation) do %>
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1"><%= automation.title %></h5>
+    <small><%= automation.created_at %></small>
+  </div>
+  <p class="mb-1"><%= automation.content %></p>
+    <% end %>
+  <% end  %>
+</div>
+
+<%= button_to "New Automation", chats_path, class: "btn btn-primary"%>
