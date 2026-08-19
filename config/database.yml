@@ -85,20 +85,4 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  primary: &primary_production
-    <<: *default
-    database: skills_forge_production
-    username: skills_forge
-    password: <%= ENV["SKILLS_FORGE_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: skills_forge_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: skills_forge_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: skills_forge_production_cable
-    migrations_paths: db/cable_migrate
+  url: <%= ENV["DATABASE_URL"] %>
