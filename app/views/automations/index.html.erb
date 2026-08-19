@@ -1,6 +1,8 @@
 <div class="list-group">
   <% @automations.each do |automation| %>
-    <%= link_to automation_path(automation) do %>
+    <%= link_to automation_path(automation),
+            class: "list-group-item list-group-item-action",
+            aria: { current: "true" } do %>
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1"><%= automation.title %></h5>
     <small><%= automation.created_at %></small>
