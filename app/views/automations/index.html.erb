@@ -1,15 +1,16 @@
-<div class="list-group">
+<div class="d-flex justify-content-center mt-5 rounded">
+<div class="list-group w-50 text-center">
   <% @automations.each do |automation| %>
     <%= link_to automation_path(automation),
             class: "list-group-item list-group-item-action",
             aria: { current: "true" } do %>
   <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1"><%= automation.title %></h5>
+    <h5 class="mb-1 fw-bold"><%= automation.title %></h5>
     <small><%= automation.created_at %></small>
   <p class="mb-1">Résumé automation</p>
   </div>
     <% end %>
   <% end  %>
+  <%= button_to "New Automation", chats_path, class: "btn btn-primary mt-3"%>
 </div>
-
-<%= button_to "New Automation", chats_path, class: "btn btn-primary"%>
+</div>
