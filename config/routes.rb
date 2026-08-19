@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "chats/create"
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  
+
   resources :chats, only: [:create] do
     resources :messages, only: [:create]
     resources :automations, only: [:create]
@@ -23,5 +22,5 @@ Rails.application.routes.draw do
   resources :automations, only: [:index, :show]
 
   get "/privacy", to: "pages#privacy"
-  
+
 end
