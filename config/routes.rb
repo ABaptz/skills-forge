@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  
+
   resources :chats, only: [:create] do
     resources :messages, only: [:create]
     resources :automations, only: [:create]
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   resources :automations, only: [:index, :show]
 
   get "/privacy", to: "pages#privacy"
-  
+
 end

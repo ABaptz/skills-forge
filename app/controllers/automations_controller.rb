@@ -1,5 +1,5 @@
 class AutomationsController < ApplicationController
   def index
-    @automations = Automation.all
+    @automations = current_user.automations
   end
 end
