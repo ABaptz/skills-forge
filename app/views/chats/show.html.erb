@@ -1,28 +1,42 @@
-<%= link_to "← Home", root_path %>
+<%= link_to "← Accueil", root_path %>
 
 <h1 id="chat_title"><%= @chat.title %></h1>
 
-
 <div id="messages">
-  <% @chat.messages.each do |message| %>
+  <% @chat.messages.order(:created_at).each do |message| %>
     <% if message.role == "user" %>
       <div class="d-flex justify-content-end mb-2">
         <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-          <%= message.content %>
+          <%= simple_format(message.content) %>
         </div>
       </div>
     <% elsif message.role == "assistant" %>
       <div class="d-flex justify-content-start mb-5">
         <div class="px-3 pb-0 pt-3">
-          <%= message.content %>
+          <%= simple_format(message.content) %>
         </div>
       </div>
     <% end %>
   <% end %>
-  <div id="new_message_container">
-  <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started with the challenge?" %>
-    <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
-  <% end %>
 </div>
+
+<div id="new_message_container">
+
+  <%# AJOUT : affiche les erreurs de validation, par exemple le plafond de messages atteint.
+      Sans ce bloc, le message de l'utilisateur disparaît sans aucune explication. %>
+  <% if @message.errors.any? %>
+    <div class="alert alert-warning">
+      <% @message.errors.full_messages.each do |msg| %>
+        <p class="mb-0"><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= simple_form_for [@chat, @message] do |f| %>
+    <%= f.input :content,
+                label: "Votre message",
+                required: true,
+                placeholder: "Décrivez la tâche que vous aimeriez confier à un assistant" %>
+    <%= f.button :submit, "Envoyer", class: "btn btn-primary" %>
+  <% end %>
 </div>
