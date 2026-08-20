@@ -6,7 +6,7 @@
             aria: { current: "true" } do %>
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1 fw-bold"><%= automation.title %></h5>
-    <small><%= automation.created_at %></small>
+    <small><%= FR_LOCAL.format_date_standard(automation.created_at.to_date) %></small>
   <p class="mb-1">Résumé automation</p>
   </div>
     <% end %>
