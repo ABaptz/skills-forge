@@ -123,6 +123,7 @@ class MessagesController < ApplicationController
       # Send the turn to the LLM with the system prompt as instructions.
       @ruby_llm_chat = RubyLLM.chat
       build_conversation_history
+      @ruby_llm_chat.with_tool(CreateAutomationTool.new(user: current_user))
       response = @ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
       # Persist the assistant turn.
       Message.create(role: "assistant", content: response.content, chat: @chat)
