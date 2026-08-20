@@ -1,3 +1,5 @@
+<%= turbo_stream_from @chat %>
+
 <div class="chat-page">
   <div class="container chat-container">
     <div class="chat-topbar">
@@ -91,54 +93,22 @@
             </div>
           </div>
 
-          <% if @chat.messages.any? %>
-            <% @chat.messages.each do |message| %>
-              <div class="chat-message <%= message.role == "user" ? "user-message" : "assistant-message" %>">
-                <div class="message-avatar">
-                  <% if message.role == "user" %>
-                    <%= current_user.username.first.upcase %>
-                  <% else %>
-                    <i class="fa-solid fa-robot"></i>
-                  <% end %>
-                </div>
+          <div id="messages">
+            <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
+          </div>
 
-                <div class="message-content">
-                  <strong>
-                    <%= message.role == "user" ? "Vous" : "Assistant SkillForge" %>
-                  </strong>
-
-                  <p><%= simple_format(message.content) %></p>
-                </div>
-              </div>
+          <div class="container">
+            <% if @chat.automations.last %>
+              <p><%= "Title : #{Automation.last.title}" %></p>
+              <p><%= "Description : #{Automation.last.description}" %></p>
+              <p><%= "Content : #{Automation.last.content}" %></p>
             <% end %>
-          <% end %>
-        </div>
+          </div>
 
-        <div class="chat-form-container">
-          <%= simple_form_for [@chat, @message] do |f| %>
-            <%= f.input :content,
-                        label: false,
-                        placeholder: "Exemple : chaque dimanche, je souhaite recevoir des idées de recettes pour la semaine...",
-                        input_html: {
-                          rows: 4,
-                          class: "chat-textarea"
-                        } %>
-
-            <div class="chat-form-footer">
-              <span>
-                <i class="fa-solid fa-circle-info"></i>
-                Décrivez clairement l’objectif et le résultat attendu.
-              </span>
-
-              <%= f.button :button,
-                           class: "chat-submit-button" do %>
-                Envoyer
-                <i class="fa-solid fa-paper-plane"></i>
-              <% end %>
-            </div>
-          <% end %>
+          <div id="new_message_container">
+            <%= render "messages/form", chat: @chat, message: @message %>
+          </div>
         </div>
       </section>
     </div>
   </div>
-</div>

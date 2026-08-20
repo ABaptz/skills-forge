@@ -1,0 +1,17 @@
+<div class="chat-message <%= message.role == "user" ? "user-message" : "assistant-message" %>" id="<%= dom_id(message) %>">
+  <div class="message-avatar">
+    <% if message.role == "user" %>
+      <%= message&.chat.user.username.first.upcase %>
+    <% else %>
+      <i class="fa-solid fa-robot"></i>
+    <% end %>
+  </div>
+
+  <div class="message-content">
+    <strong>
+      <%= message.role == "user" ? "Vous" : "Assistant SkillForge" %>
+    </strong>
+
+    <%= raw(render_markdown(message.content)) %>
+  </div>
+</div>
