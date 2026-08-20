@@ -1,28 +1,144 @@
-<%= link_to "← Home", root_path %>
+<div class="chat-page">
+  <div class="container chat-container">
+    <div class="chat-topbar">
+      <%= link_to root_path, class: "chat-back-link" do %>
+        <i class="fa-solid fa-arrow-left"></i>
+        Retour à l’accueil
+      <% end %>
 
-<h1 id="chat_title"><%= @chat.title %></h1>
+      <span class="chat-status">
+        <span></span>
+        Assistant disponible
+      </span>
+    </div>
 
-
-<div id="messages">
-  <% @chat.messages.each do |message| %>
-    <% if message.role == "user" %>
-      <div class="d-flex justify-content-end mb-2">
-        <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-          <%= message.content %>
+    <div class="chat-layout">
+      <!-- INFORMATIONS DU CHAT -->
+      <aside class="chat-sidebar">
+        <div class="chat-sidebar-icon">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
         </div>
-      </div>
-    <% elsif message.role == "assistant" %>
-      <div class="d-flex justify-content-start mb-5">
-        <div class="px-3 pb-0 pt-3">
-          <%= message.content %>
+
+        <p class="chat-sidebar-label">
+          NOUVELLE SKILL
+        </p>
+
+        <h1>
+          <%= @chat.title.presence || "Nouvelle Skill" %>
+        </h1>
+
+        <p>
+          Décrivez la tâche que vous souhaitez automatiser.
+          Notre assistant vous aidera à préciser votre besoin.
+        </p>
+
+        <div class="chat-progress">
+          <div class="chat-progress-item active">
+            <span>1</span>
+
+            <div>
+              <strong>Décrire le besoin</strong>
+              <small>Expliquez votre tâche</small>
+            </div>
+          </div>
+
+          <div class="chat-progress-item">
+            <span>2</span>
+
+            <div>
+              <strong>Préciser les détails</strong>
+              <small>Répondez aux questions</small>
+            </div>
+          </div>
+
+          <div class="chat-progress-item">
+            <span>3</span>
+
+            <div>
+              <strong>Générer la Skill</strong>
+              <small>Obtenez votre automatisation</small>
+            </div>
+          </div>
         </div>
-      </div>
-    <% end %>
-  <% end %>
-  <div id="new_message_container">
-  <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started with the challenge?" %>
-    <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
-  <% end %>
-</div>
+      </aside>
+
+      <!-- CONVERSATION -->
+      <section class="chat-panel">
+        <div class="chat-panel-header">
+          <div class="chat-assistant-avatar">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+
+          <div>
+            <h2>Assistant SkillForge</h2>
+            <p>Décrivez votre besoin pour commencer</p>
+          </div>
+        </div>
+
+        <div class="chat-messages">
+          <div class="chat-message assistant-message">
+            <div class="message-avatar">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div class="message-content">
+              <strong>Assistant SkillForge</strong>
+
+              <p>
+                Bonjour ! Quelle tâche répétitive souhaitez-vous
+                transformer en Skill aujourd’hui ?
+              </p>
+            </div>
+          </div>
+
+          <% if @chat.messages.any? %>
+            <% @chat.messages.each do |message| %>
+              <div class="chat-message <%= message.role == "user" ? "user-message" : "assistant-message" %>">
+                <div class="message-avatar">
+                  <% if message.role == "user" %>
+                    <%= current_user.username.first.upcase %>
+                  <% else %>
+                    <i class="fa-solid fa-robot"></i>
+                  <% end %>
+                </div>
+
+                <div class="message-content">
+                  <strong>
+                    <%= message.role == "user" ? "Vous" : "Assistant SkillForge" %>
+                  </strong>
+
+                  <p><%= simple_format(message.content) %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="chat-form-container">
+          <%= simple_form_for [@chat, @message] do |f| %>
+            <%= f.input :content,
+                        label: false,
+                        placeholder: "Exemple : chaque dimanche, je souhaite recevoir des idées de recettes pour la semaine...",
+                        input_html: {
+                          rows: 4,
+                          class: "chat-textarea"
+                        } %>
+
+            <div class="chat-form-footer">
+              <span>
+                <i class="fa-solid fa-circle-info"></i>
+                Décrivez clairement l’objectif et le résultat attendu.
+              </span>
+
+              <%= f.button :button,
+                           class: "chat-submit-button" do %>
+                Envoyer
+                <i class="fa-solid fa-paper-plane"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
 </div>

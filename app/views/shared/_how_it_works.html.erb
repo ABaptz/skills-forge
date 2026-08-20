@@ -1,0 +1,52 @@
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-heading">
+      <span>COMMENT ÇA MARCHE ?</span>
+      <h2>Créez votre Skill en trois étapes</h2>
+
+      <p>
+        Passez de votre idée à une automatisation IA structurée.
+      </p>
+    </div>
+
+    <% steps = [
+      {
+        number: "01",
+        icon: "fa-regular fa-message",
+        title: "Décrivez votre tâche",
+        description: "Expliquez la tâche répétitive que vous souhaitez automatiser."
+      },
+      {
+        number: "02",
+        icon: "fa-solid fa-wand-magic-sparkles",
+        title: "Précisez votre besoin",
+        description: "Échangez avec l’assistant pour définir vos objectifs et vos contraintes."
+      },
+      {
+        number: "03",
+        icon: "fa-solid fa-bolt",
+        title: "Générez votre Skill",
+        description: "Obtenez des instructions structurées et réutilisables."
+      }
+    ] %>
+
+    <div class="row g-4">
+      <% steps.each do |step| %>
+        <div class="col-md-4">
+          <article class="step-card">
+            <span class="step-number">
+              <%= step[:number] %>
+            </span>
+
+            <div class="step-icon">
+              <i class="<%= step[:icon] %>"></i>
+            </div>
+
+            <h3><%= step[:title] %></h3>
+            <p><%= step[:description] %></p>
+          </article>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
