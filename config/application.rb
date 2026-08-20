@@ -12,6 +12,8 @@ module SkillsForge
       generate.assets false
       generate.helper false
       generate.test_framework :test_unit, fixture: false
+      config.x.llm.thinking_effort = ENV.fetch("THINKING_EFFORT", "medium").to_sym # possible values "low", "medium", "high"
+      # ^here we are going to set the thinking effort of RubyLLM
     end
 
     # Initialize configuration defaults for originally generated Rails version.
