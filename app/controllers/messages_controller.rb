@@ -9,13 +9,14 @@ class MessagesController < ApplicationController
 
     if @message.save
       # Send the turn to the LLM with the system prompt as instructions.
-      @ruby_llm_chat = RubyLLM.chat
+      @ruby_llm_chat = @chat.llm #calls the llm method of the chat model
       build_conversation_history
       response = @ruby_llm_chat.with_instructions(Prompt::SYSTEM_PROMPT_GENERAL).ask(@message.content)
       # Persist the assistant turn.
       Message.create(role: "assistant", content: response.content, chat: @chat)
       # @chat.generate_title_from_first_message
-      redirect_to chats_path
+      # redirect_to chats_path << romain to delete after tests completed
+      redirect_to chat_path(@chat)
     else
       render "chats/show", status: :unprocessable_entity
     end
