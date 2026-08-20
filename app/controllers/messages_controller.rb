@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
     @ruby_llm_chat = RubyLLM.chat
 
     build_conversation_history
-    @ruby_llm_chat.with_tool(CreateAutomationTool.new(user: current_user))
+    @ruby_llm_chat.with_tool(CreateAutomationTool.new(chat: @chat))
     @ruby_llm_chat.with_instructions(Prompt::SYSTEM_PROMPT_GENERAL)
 
     @ruby_llm_chat.ask(@message.content) do |chunk|

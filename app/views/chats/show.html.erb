@@ -8,6 +8,7 @@
   <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
 </div>
 
+<%# ajouter un id sur ton container pour pouvoir le cibler en turbo %>
 <div class="container">
   <% if @chat.automations.last %>
     <p><%= "Title : #{Automation.last.title}" %></p>
