@@ -1,39 +1,59 @@
-<nav class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "logo.png", class: "ms-2" %>
+<header class="home-navbar">
+  <div class="container home-navbar-container">
+    <%= link_to root_path, class: "home-navbar-brand" do %>
+      <span class="home-navbar-logo">
+        <i class="fa-solid fa-hammer"></i>
+      </span>
+
+      <span>SkillForge</span>
     <% end %>
-    <%= link_to "SkillForge", root_path, class: "fs-4 logo-font" %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Automations", automations_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link fs-4 me-2" %>
-          </li>
+    <nav class="home-navbar-navigation">
+      <% if user_signed_in? %>
+        <%= link_to automations_path, class: "home-navbar-link" do %>
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Mes automatisations</span>
         <% end %>
-      </ul>
-    </div>
+
+        <%= button_to chats_path,
+                      method: :post,
+                      class: "home-navbar-button" do %>
+          <i class="fa-solid fa-plus"></i>
+          <span>Nouvelle Skill</span>
+        <% end %>
+
+        <div class="home-navbar-user">
+          <div class="home-navbar-avatar">
+            <% if current_user.username.present? %>
+              <%= current_user.username.first.upcase %>
+            <% else %>
+              <%= current_user.email.first.upcase %>
+            <% end %>
+          </div>
+
+          <div class="home-navbar-user-information">
+            <strong>
+              <%= current_user.username.presence || "Utilisateur" %>
+            </strong>
+
+            <span>
+              <%= current_user.email %>
+            </span>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to new_user_session_path,
+                    class: "home-navbar-link" do %>
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span>Se connecter</span>
+        <% end %>
+
+        <%= link_to new_user_registration_path,
+                    class: "home-navbar-button" do %>
+          <i class="fa-solid fa-user-plus"></i>
+          <span>Créer un compte</span>
+        <% end %>
+      <% end %>
+    </nav>
   </div>
-</nav>
+</header>

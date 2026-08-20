@@ -1,13 +1,17 @@
-<% if message.role == "user" %>
-  <div class="d-flex justify-content-end mb-2">
-    <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-      <%= raw(render_markdown(message.content)) %>
-    </div>
+<div class="chat-message <%= message.role == "user" ? "user-message" : "assistant-message" %>" id="<%= dom_id(message) %>">
+  <div class="message-avatar">
+    <% if message.role == "user" %>
+      <%= message&.chat.user.username.first.upcase %>
+    <% else %>
+      <i class="fa-solid fa-robot"></i>
+    <% end %>
   </div>
-<% elsif message.role == "assistant" %>
-  <div class="d-flex justify-content-start mb-5" id="<%= dom_id(message) %>">
-    <div class="px-3 pb-0 pt-3">
-      <%= raw(render_markdown(message.content)) %>
-    </div>
+
+  <div class="message-content">
+    <strong>
+      <%= message.role == "user" ? "Vous" : "Assistant SkillForge" %>
+    </strong>
+
+    <%= raw(render_markdown(message.content)) %>
   </div>
-<% end %>
+</div>

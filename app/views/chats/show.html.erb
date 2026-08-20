@@ -1,21 +1,114 @@
 <%= turbo_stream_from @chat %>
 
-<%= link_to "← Home", root_path %>
+<div class="chat-page">
+  <div class="container chat-container">
+    <div class="chat-topbar">
+      <%= link_to root_path, class: "chat-back-link" do %>
+        <i class="fa-solid fa-arrow-left"></i>
+        Retour à l’accueil
+      <% end %>
 
-<h1 id="chat_title"><%= @chat.title %></h1>
+      <span class="chat-status">
+        <span></span>
+        Assistant disponible
+      </span>
+    </div>
 
-<div id="messages">
-  <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
-</div>
+    <div class="chat-layout">
+      <!-- INFORMATIONS DU CHAT -->
+      <aside class="chat-sidebar">
+        <div class="chat-sidebar-icon">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
 
-<div class="container">
-  <% if @chat.automations.last %>
-    <p><%= "Title : #{Automation.last.title}" %></p>
-    <p><%= "Description : #{Automation.last.description}" %></p>
-    <p><%= "Content : #{Automation.last.content}" %></p>
-  <% end %>
-</div>
+        <p class="chat-sidebar-label">
+          NOUVELLE SKILL
+        </p>
 
-<div id="new_message_container">
-  <%= render "messages/form", chat: @chat, message: @message %>
-</div>
+        <h1>
+          <%= @chat.title.presence || "Nouvelle Skill" %>
+        </h1>
+
+        <p>
+          Décrivez la tâche que vous souhaitez automatiser.
+          Notre assistant vous aidera à préciser votre besoin.
+        </p>
+
+        <div class="chat-progress">
+          <div class="chat-progress-item active">
+            <span>1</span>
+
+            <div>
+              <strong>Décrire le besoin</strong>
+              <small>Expliquez votre tâche</small>
+            </div>
+          </div>
+
+          <div class="chat-progress-item">
+            <span>2</span>
+
+            <div>
+              <strong>Préciser les détails</strong>
+              <small>Répondez aux questions</small>
+            </div>
+          </div>
+
+          <div class="chat-progress-item">
+            <span>3</span>
+
+            <div>
+              <strong>Générer la Skill</strong>
+              <small>Obtenez votre automatisation</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CONVERSATION -->
+      <section class="chat-panel">
+        <div class="chat-panel-header">
+          <div class="chat-assistant-avatar">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+
+          <div>
+            <h2>Assistant SkillForge</h2>
+            <p>Décrivez votre besoin pour commencer</p>
+          </div>
+        </div>
+
+        <div class="chat-messages">
+          <div class="chat-message assistant-message">
+            <div class="message-avatar">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div class="message-content">
+              <strong>Assistant SkillForge</strong>
+
+              <p>
+                Bonjour ! Quelle tâche répétitive souhaitez-vous
+                transformer en Skill aujourd’hui ?
+              </p>
+            </div>
+          </div>
+
+          <div id="messages">
+            <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
+          </div>
+
+          <div class="container">
+            <% if @chat.automations.last %>
+              <p><%= "Title : #{Automation.last.title}" %></p>
+              <p><%= "Description : #{Automation.last.description}" %></p>
+              <p><%= "Content : #{Automation.last.content}" %></p>
+            <% end %>
+          </div>
+
+          <div id="new_message_container">
+            <%= render "messages/form", chat: @chat, message: @message %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>

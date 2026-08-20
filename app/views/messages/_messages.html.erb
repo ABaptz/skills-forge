@@ -1,3 +1,5 @@
-<% messages.each do |message| %>
-  <%= render "messages/message", message: message %>
+<% if messages.any? %>
+  <% messages.each do |message| %>
+    <%= render "messages/message", message: message %>
+  <% end %>
 <% end %>
