@@ -5,7 +5,7 @@
     </div>
   </div>
 <% elsif message.role == "assistant" %>
-  <div class="d-flex justify-content-start mb-5">
+  <div class="d-flex justify-content-start mb-5" id="<%= dom_id(message) %>">
     <div class="px-3 pb-0 pt-3">
       <%= raw(render_markdown(message.content)) %>
     </div>

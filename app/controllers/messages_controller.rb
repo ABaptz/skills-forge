@@ -110,27 +110,30 @@ class MessagesController < ApplicationController
   PROMPT
   # ^ Line 89 above ({{GENERATE_BUTTON_LABEL}}) To be updated once we get the button name
   def create
-
     @chat = current_user.chats.find(params[:chat_id])
     @message = Message.new(message_params)
     @message.chat = @chat
     @message.role = "user"
 
     if @message.save
+      @assistant_message = @chat.messages.create(role: "assistant", content: "")
+
+      response = ask_llm
+      @assistant_message.update(content: response.content)
+      broadcast_replace(@assistant_message)
+
       @chat.generate_title_from_first_message
-      @ruby_llm_chat = RubyLLM.chat
-      @chat.messages.where.not(id: @message.id).order(:created_at).each do |m|
-        @ruby_llm_chat.add_message(content: m.content, role: m.role)
-      end
-      response = @ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
-      @assistant_message = Message.create!(role: "assistant", content: response.content, chat: @chat)
+
       respond_to do |format|
         format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
         format.html { redirect_to chat_path(@chat) }
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.update("new_message_container", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.update("new_message_container",
+                                                   partial: "messages/form",
+                                                   locals: { chat: @chat, message: @message })}
         format.html { render "chats/show", status: :unprocessable_entity }
       end
     end
@@ -144,7 +147,31 @@ class MessagesController < ApplicationController
 
   def build_conversation_history
     @chat.messages.each do |message|
+      next if message.content.blank?
+
       @ruby_llm_chat.add_message(content: message.content, role: message.role)
     end
+  end
+
+  def ask_llm
+    @ruby_llm_chat = RubyLLM.chat
+
+    build_conversation_history
+    @ruby_llm_chat.with_instructions(SYSTEM_PROMPT)
+
+    @ruby_llm_chat.ask(@message.content) do |chunk|
+      next if chunk.content.blank? # skip empty chunks
+
+      @assistant_message.content += chunk.content
+      broadcast_replace(@assistant_message)
+    end
+  end
+
+  def broadcast_replace(message)
+    Turbo::StreamsChannel.broadcast_replace_to(
+      @chat, target: helpers.dom_id(message),
+             partial: "messages/message",
+             locals: { message: message }
+    )
   end
 end

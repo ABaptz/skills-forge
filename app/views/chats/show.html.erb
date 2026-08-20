@@ -1,9 +1,11 @@
+<%= turbo_stream_from @chat %>
+
 <%= link_to "← Home", root_path %>
 
 <h1 id="chat_title"><%= @chat.title %></h1>
 
 <div id="messages">
-  <%= render "messages/messages", messages: @chat.messages %>
+  <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
 </div>
 
 <div id="new_message_container">
