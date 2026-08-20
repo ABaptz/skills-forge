@@ -1,24 +1,31 @@
 class MessagesController < ApplicationController
   def create
-    # Scope the chat to the current user so one user cannot post into another's chat.
     @chat = current_user.chats.find(params[:chat_id])
-    # # Persist the user turn first.
     @message = Message.new(message_params)
     @message.chat = @chat
     @message.role = "user"
 
     if @message.save
-      # Send the turn to the LLM with the system prompt as instructions.
-      @ruby_llm_chat = @chat.llm #calls the llm method of the chat model
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(Prompt::SYSTEM_PROMPT_GENERAL).ask(@message.content)
-      # Persist the assistant turn.
-      Message.create(role: "assistant", content: response.content, chat: @chat)
-      # @chat.generate_title_from_first_message
-      # redirect_to chats_path << romain to delete after tests completed
-      redirect_to chat_path(@chat)
+      @assistant_message = @chat.messages.create(role: "assistant", content: "")
+
+      response = ask_llm
+      @assistant_message.update(content: response.content)
+      broadcast_replace(@assistant_message)
+
+      @chat.generate_title_from_first_message
+
+      respond_to do |format|
+        format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
+        format.html { redirect_to chat_path(@chat) }
+      end
     else
-      render "chats/show", status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.update("new_message_container",
+                                                   partial: "messages/form",
+                                                   locals: { chat: @chat, message: @message })}
+        format.html { render "chats/show", status: :unprocessable_entity }
+      end
     end
   end
 
@@ -30,7 +37,32 @@ class MessagesController < ApplicationController
 
   def build_conversation_history
     @chat.messages.each do |message|
+      next if message.content.blank?
+
       @ruby_llm_chat.add_message(content: message.content, role: message.role)
     end
+  end
+
+  def ask_llm
+    @ruby_llm_chat = @chat.llm
+
+    build_conversation_history
+    @ruby_llm_chat.with_tool(CreateAutomationTool.new(user: current_user))
+    @ruby_llm_chat.with_instructions(Prompt::SYSTEM_PROMPT_GENERAL)
+
+    @ruby_llm_chat.ask(@message.content) do |chunk|
+      next if chunk.content.blank? # skip empty chunks
+
+      @assistant_message.content += chunk.content
+      broadcast_replace(@assistant_message)
+    end
+  end
+
+  def broadcast_replace(message)
+    Turbo::StreamsChannel.broadcast_replace_to(
+      @chat, target: helpers.dom_id(message),
+             partial: "messages/message",
+             locals: { message: message }
+    )
   end
 end
