@@ -9,9 +9,8 @@ class Chat < ApplicationRecord
     Generate a short, descriptive, 3-to-6-word title that summarizes the user question for a chat conversation.
   PROMPT
   def llm
-  # this method takes the parameter we set in the config to easily adapt the thinking effort
-  # RubyLLM.chat.with_thinking(effort: Rails.application.config.x.llm.thinking_effort)
-  RubyLLM.chat.with_thinking(effort: 'none')
+    # this method takes the parameter we set in the config to easily adapt the thinking effort
+    RubyLLM.chat.with_thinking(effort: Rails.application.config.x.llm.thinking_effort)
   end
 
   def generate_title_from_first_message
