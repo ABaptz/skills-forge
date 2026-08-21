@@ -249,31 +249,23 @@
 }
 
 // Layout deux colonnes pour /automations : sidebar tutos a gauche + contenu a droite
+// Wrap dans <div class="container"> pour aligner sur la navbar SkillForge
 .automations-layout {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
   gap: 32px;
   align-items: start;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 32px 24px;
+  padding: 32px 0;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
 }
 
-.automations-sidebar {
-  position: sticky;
-  top: 96px;
-
-  @media (max-width: 900px) {
-    position: static;
-  }
-}
-
 .automations-sidebar-section {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
   background: white;
@@ -282,48 +274,48 @@
 
 .automations-sidebar-title {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   color: #0f172a;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 800;
 
   i {
     color: #4f46e5;
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 
 .automations-sidebar-hint {
-  margin: 0 0 14px;
+  margin: 0 0 18px;
   color: #64748b;
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .automations-sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .automations-sidebar-link {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 10px;
-  color: #475569;
-  font-size: 14px;
+  color: #334155;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
   transition: 0.15s ease;
 
   i {
-    width: 18px;
+    width: 20px;
     color: #94a3b8;
-    font-size: 15px;
+    font-size: 17px;
     text-align: center;
     transition: 0.15s ease;
   }
