@@ -11,12 +11,20 @@ sylvie = User.create!(
   email: "sylvie222@example.com",
   username: "Sylvie222",
   password: "password123",
+  first_name: "Sylvie",
+  last_name: "Dupont",
+  job_title: "Office Manager",
+  preferred_llm_provider: "OpenAI"
 )
 
 yann = User.create!(
   email: "yann777@example.com",
   username: "Yann777",
   password: "password567",
+  first_name: "Yann",
+  last_name: "Martin",
+  job_title: "Consultant",
+  preferred_llm_provider: "Anthropic"
 )
 
 puts "Creating chats..."
@@ -125,7 +133,8 @@ Automation.create!(
   chat: sylvie_energie_chat,
   title: "Household Electricity, Gas and Water Tracking",
   llm_provider: "OpenAI",
-  content: content
+  content: content,
+  description: "Importe les données de consommation d'électricité, de gaz et d'eau depuis des fichiers Excel ou CSV, puis génère un tableau récapitulatif mensuel avec tendances, variations et alertes sur les changements significatifs."
 )
 content = <<~MARKDOWN
   # Recettes du dimanche soir
@@ -160,7 +169,8 @@ Automation.create!(
   chat: yann_cuisine_chat,
   title: "Easy Sunday Evening Recipes",
   llm_provider: "Anthropic",
-  content: content
+  content: content,
+  description: "Propose chaque dimanche soir des idées de recettes simples et rapides pour la semaine, basées sur les ingrédients déjà disponibles, le nombre de convives et les préférences alimentaires."
 )
 content = <<~MARKDOWN
   # Temps forts NBA de la veille
@@ -192,7 +202,8 @@ Automation.create!(
   chat: yann_nba_chat,
   title: "Previous Day NBA Highlights Summary",
   llm_provider: "Google",
-  content: content
+  content: content,
+  description: " Résume chaque matin les moments forts des matchs NBA de la veille : actions décisives, performances marquantes et temps forts à ne pas manquer, sans avoir à regarder les rencontres."
 )
 content = <<~MARKDOWN
   # Analyse intelligente des newsletters hebdomadaires
@@ -228,7 +239,8 @@ Automation.create!(
   chat: yann_news_chat,
   title: "Weekly Newsletter Intelligence",
   llm_provider: "OpenAI",
-  content: content
+  content: content,
+  description: "Analyse chaque semaine une cinquantaine de newsletters, hiérarchise les sujets par niveau de priorité et produit un résumé détaillé des informations à impact majeur avec leurs conséquences potentielles."
 )
 
 puts "Seed completed!"
