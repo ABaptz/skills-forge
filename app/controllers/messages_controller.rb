@@ -44,7 +44,7 @@ class MessagesController < ApplicationController
   end
 
   def ask_llm
-    @ruby_llm_chat = RubyLLM.chat
+    @ruby_llm_chat = @chat.llm
 
     build_conversation_history
     @ruby_llm_chat.with_tool(CreateAutomationTool.new(chat: @chat))

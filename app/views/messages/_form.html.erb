@@ -1,4 +1,24 @@
-<%= simple_form_for [chat, message] do |f| %>
-  <%= f.input :content, label: "Ask a question", required: true, placeholder: "What's the point of making automations?" %>
-  <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
-<% end %>
+<div class="chat-form-container">
+  <%= simple_form_for [chat, message] do |f| %>
+    <%= f.input :content,
+                label: false,
+                placeholder: "Exemple : chaque dimanche, je souhaite recevoir des idées de recettes pour la semaine...",
+                input_html: {
+                  rows: 4,
+                  class: "chat-textarea"
+                } %>
+
+    <div class="chat-form-footer">
+      <span>
+        <i class="fa-solid fa-circle-info"></i>
+        Décrivez clairement l’objectif et le résultat attendu.
+      </span>
+
+      <%= f.button :button,
+                    class: "chat-submit-button" do %>
+        Envoyer
+        <i class="fa-solid fa-paper-plane"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
