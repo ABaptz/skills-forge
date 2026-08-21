@@ -33,13 +33,15 @@
           </summary>
 
           <div class="home-user-dropdown">
-            <div class="home-user-dropdown-information">
-              <strong>
-                <%= current_user.username.presence || "Utilisateur" %>
-              </strong>
+            <%= link_to profile_path(), class: "text-decoration-none" do %>
+              <div class="home-user-dropdown-information">
+                <strong>
+                  <%= current_user.username.presence || "Utilisateur" %>
+                </strong>
 
-              <span><%= current_user.email %></span>
-            </div>
+                <span><%= current_user.email %></span>
+              </div>
+            <% end %>
 
             <%= link_to "#", class: "home-user-dropdown-link" do %>
               <i class="fa-solid fa-graduation-cap"></i>
