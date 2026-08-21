@@ -2,7 +2,8 @@ class Automation < ApplicationRecord
   include ActionView::RecordIdentifier
   after_create_commit :generate_description
   belongs_to :chat
-  validates :llm_provider, inclusion: { in: %w[OpenAI openai Anthropic Google] } #  has to be in the list of the 3 providers
+  before_validation :default_llm_provider_from_user
+  validates :llm_provider, inclusion: { in: %w[OpenAI Anthropic Google] } # has to be in the list of the 3 providers
   validates :title, presence: true
   validates :description, presence: true
   after_commit :broadcast_on_chat_show
@@ -13,11 +14,16 @@ class Automation < ApplicationRecord
 
   private
 
+  def default_llm_provider_from_user
+    self.llm_provider ||= chat&.user&.preferred_llm_provider
+    # ^ chat can be nil here: before_validation runs before the belongs_to presence check.
+  end
+
   def generate_description
     return if content.blank?
     return if description.present?
 
-    response = RubyLLM.chat.with_instructions(DESCRIPTION_PROMPT).ask(content)
+    response = RubyLLM.chat.with_instructions(AUTOMATION_DESCRIPTION).ask(content)
     update(description: response.content)
   end
 
