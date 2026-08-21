@@ -1,0 +1,40 @@
+
+<div class="container py-5">
+  <div class="card p-4 shadow-sm">
+    <h1>Mon profil</h1>
+
+    <hr>
+
+    <p>
+      <strong>Prénom :</strong>
+      <%= current_user.first_name.presence || "Non renseigné" %>
+    </p>
+
+    <p>
+      <strong>Nom :</strong>
+      <%= current_user.last_name.presence || "Non renseigné" %>
+    </p>
+
+    <p>
+      <strong>Nom d'utilisateur :</strong>
+      <%= current_user.username.presence || "Non renseigné" %>
+    </p>
+
+    <p>
+      <strong>Email :</strong>
+      <%= current_user.email %>
+    </p>
+
+    <p>
+      <strong>Métier :</strong>
+      <%= current_user.job_title.presence || "Non renseigné" %>
+    </p>
+
+    <p>
+      <strong>LLM préféré :</strong>
+      <%= current_user.preferred_llm_provider.presence || "Non renseigné" %>
+    </p>
+  </div>
+</div>
+
+

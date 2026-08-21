@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # 
+  get "profile", to: "pages#profile", as: :profile
 
   resources :chats, only: [:create, :show] do
     resources :messages, only: [:create]

@@ -22,25 +22,28 @@
           <span>Nouvelle Skill</span>
         <% end %>
 
-        <div class="home-navbar-user">
-          <div class="home-navbar-avatar">
-            <% if current_user.username.present? %>
-              <%= current_user.username.first.upcase %>
-            <% else %>
-              <%= current_user.email.first.upcase %>
-            <% end %>
-          </div>
+        <%= link_to profile_path do %>
+          <div class="home-navbar-user">
+            <div class="home-navbar-avatar">
+              <% if current_user.username.present? %>
+                <%= current_user.username.first.upcase %>
+              <% else %>
+                <%= current_user.email.first.upcase %>
+              <% end %>
+            </div>
 
-          <div class="home-navbar-user-information">
-            <strong>
-              <%= current_user.username.presence || "Utilisateur" %>
-            </strong>
+            <div class="home-navbar-user-information">
+              <strong>
+                <%= current_user.username.presence || "Utilisateur" %>
+              </strong>
 
-            <span>
-              <%= current_user.email %>
-            </span>
+              <span>
+                <%= current_user.email %>
+              </span>
+            </div>
           </div>
-        </div>
+        <% end %>
+
       <% else %>
         <%= link_to new_user_session_path,
                     class: "home-navbar-link" do %>
