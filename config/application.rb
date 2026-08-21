@@ -12,8 +12,6 @@ module SkillsForge
       generate.assets false
       generate.helper false
       generate.test_framework :test_unit, fixture: false
-      config.x.llm.thinking_effort = ENV.fetch("THINKING_EFFORT", "medium").to_sym # possible values "low", "medium", "high"
-      # ^here we are going to set the thinking effort of RubyLLM
     end
 
     # Initialize configuration defaults for originally generated Rails version.
@@ -25,6 +23,10 @@ module SkillsForge
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.active_job.queue_adapter = :solid_queue
+
+    config.i18n.default_locale = :fr
+    config.i18n.available_locales = [:fr, :en]
+    config.i18n.fallbacks = { fr: [:en] }
 
     # Configuration for the application, engines, and railties goes here.
     #

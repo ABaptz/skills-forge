@@ -1,0 +1,41 @@
+<% content_for(:title) { "Installer votre automation dans ChatGPT" } %>
+
+<%= render "tutorial",
+  platform_key: "chatgpt",
+  platform_name: "ChatGPT",
+  icon: "fa-solid fa-robot",
+  title: "Installer votre automation dans ChatGPT",
+  intro: "En 6 étapes simples, ajoutez votre automation à ChatGPT sous forme de GPT personnalisé.",
+  steps: [
+    {
+      title: "Copiez votre automation",
+      text: "Sur votre page <strong>Mes automatisations</strong>, ouvrez le automation à installer et cliquez sur <strong>Copier</strong>. Le texte est prêt à être collé.",
+      hint: "L'automation est un simple texte d'instructions. Aucune installation technique."
+    },
+    {
+      title: "Ouvrez ChatGPT",
+      text: "Rendez-vous sur <a href=\"https://chatgpt.com\" target=\"_blank\" rel=\"noopener\">chatgpt.com</a> et connectez-vous. Un compte gratuit permet déjà d'utiliser les GPT personnalisés existants.",
+      hint: "Pour <strong>créer</strong> un GPT personnalisé, il faut en revanche un compte payant (ChatGPT Plus, Team ou Enterprise)."
+    },
+    {
+      title: "Ouvrez « Mes GPT »",
+      text: "Cliquez sur votre nom ou avatar en bas à gauche de la barre latérale, puis choisissez <strong>Mes GPT</strong>. Cliquez ensuite sur <strong>Créer un GPT</strong>.",
+      hint: nil
+    },
+    {
+      title: "Collez votre automation dans les instructions",
+      text: "Ouvrez l'onglet <strong>Configurer</strong> (à côté de « Créer »). Dans le champ <strong>Instructions</strong>, collez le texte de votre automation.",
+      hint: "C'est ce texte qui définit comment votre GPT doit répondre et se comporter."
+    },
+    {
+      title: "Nommez et décrivez votre GPT",
+      text: "Donnez un nom clair (par exemple <em>« Assistant batch cooking »</em>) et une courte description. Vous pouvez aussi ajouter une image d'illustration.",
+      hint: nil
+    },
+    {
+      title: "Enregistrez et lancez",
+      text: "Cliquez sur <strong>Créer</strong> en haut à droite, puis choisissez <strong>Seul moi</strong> pour un usage privé. Votre GPT apparaît dans la barre latérale et se lance en un clic.",
+      hint: "Vous pouvez le modifier à tout moment depuis « Mes GPT »."
+    }
+  ]
+%>

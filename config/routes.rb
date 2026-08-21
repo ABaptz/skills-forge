@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "tutorials/claude"
+  get "tutorials/chatgpt"
+  get "tutorials/gemini"
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,6 +16,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # 
+  get "profile", to: "pages#profile", as: :profile
 
   resources :chats, only: [:create, :show] do
     resources :messages, only: [:create]

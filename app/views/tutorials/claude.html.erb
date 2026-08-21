@@ -1,0 +1,41 @@
+<% content_for(:title) { "Installer votre automation dans Claude" } %>
+
+<%= render "tutorial",
+  platform_key: "claude",
+  platform_name: "Claude",
+  icon: "fa-solid fa-comment-dots",
+  title: "Installer votre automation dans Claude",
+  intro: "En 6 étapes simples, ajoutez votre automation à Claude pour le retrouver et le lancer à volonté.",
+  steps: [
+    {
+      title: "Copiez votre automation",
+      text: "Sur votre page <strong>Mes automatisations</strong>, ouvrez l'automation que vous voulez installer. Cliquez sur <strong>Copier</strong> pour mettre son contenu dans le presse-papier.",
+      hint: "L'automation est simplement un texte d'instructions. Rien à installer sur votre ordinateur."
+    },
+    {
+      title: "Ouvrez Claude",
+      text: "Rendez-vous sur <a href=\"https://claude.ai\" target=\"_blank\" rel=\"noopener\">claude.ai</a> et connectez-vous à votre compte. Un compte gratuit suffit pour commencer.",
+      hint: nil
+    },
+    {
+      title: "Créez un nouveau Projet",
+      text: "Dans la barre latérale de gauche, cliquez sur <strong>Projets</strong>, puis sur <strong>Créer un projet</strong>. Un Projet est un espace où Claude garde en tête vos instructions à chaque conversation.",
+      hint: nil
+    },
+    {
+      title: "Collez votre automation dans les instructions",
+      text: "Une fois le projet créé, ouvrez la section <strong>Instructions personnalisées</strong> (parfois appelée « Ajouter des instructions »). Collez-y le texte de votre automation, puis enregistrez.",
+      hint: "C'est cette étape qui donne à Claude sa « personnalité » pour ce projet."
+    },
+    {
+      title: "Donnez un nom clair à votre projet",
+      text: "Nommez le projet selon ce qu'il fait, par exemple <em>« Résumé de mes newsletters »</em> ou <em>« Idées de recettes »</em>. Vous le retrouverez plus facilement.",
+      hint: nil
+    },
+    {
+      title: "Lancez votre automation",
+      text: "Dans ce projet, démarrez une nouvelle conversation et posez votre demande, ou collez le contenu à traiter. Claude appliquera automatiquement les instructions de votre automation.",
+      hint: "Vous pouvez revenir sur ce projet à tout moment : vos instructions sont conservées."
+    }
+  ]
+%>

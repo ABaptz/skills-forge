@@ -1,0 +1,41 @@
+<% content_for(:title) { "Installer votre automation dans Gemini" } %>
+
+<%= render "tutorial",
+  platform_key: "gemini",
+  platform_name: "Gemini",
+  icon: "fa-solid fa-gem",
+  title: "Installer votre automation dans Gemini",
+  intro: "En 6 étapes simples, ajoutez votre automation à Gemini sous forme de Gem personnalisé.",
+  steps: [
+    {
+      title: "Copiez votre automation",
+      text: "Sur votre page <strong>Mes automatisations</strong>, ouvrez le automaiton à installer et cliquez sur <strong>Copier</strong>. Le texte est prêt à coller.",
+      hint: "L'automation est un simple texte d'instructions. Rien à installer sur votre ordinateur."
+    },
+    {
+      title: "Ouvrez Gemini",
+      text: "Rendez-vous sur <a href=\"https://gemini.google.com\" target=\"_blank\" rel=\"noopener\">gemini.google.com</a> et connectez-vous avec votre compte Google.",
+      hint: nil
+    },
+    {
+      title: "Ouvrez la section Gems",
+      text: "Dans la barre latérale de gauche, cliquez sur <strong>Gems</strong> (ou <em>« Gérer les Gems »</em> selon votre version). Puis cliquez sur <strong>Nouveau Gem</strong>.",
+      hint: "Un Gem est un assistant personnalisé qui garde vos instructions en mémoire."
+    },
+    {
+      title: "Collez votre automation dans les instructions",
+      text: "Dans le champ <strong>Instructions</strong>, collez le texte de votre automation. Ce texte guide Gemini sur ce qu'il doit faire à chaque conversation dans ce Gem.",
+      hint: nil
+    },
+    {
+      title: "Donnez un nom à votre Gem",
+      text: "Choisissez un nom parlant (par exemple <em>« Résumé NBA du matin »</em>). Vous pouvez aussi ajouter une courte description pour vous en souvenir.",
+      hint: nil
+    },
+    {
+      title: "Enregistrez et lancez",
+      text: "Cliquez sur <strong>Enregistrer</strong>. Votre Gem apparaît maintenant dans la liste : cliquez dessus pour démarrer une conversation qui utilise votre automation.",
+      hint: "Vous pouvez modifier le Gem à tout moment depuis la section Gems."
+    }
+  ]
+%>
