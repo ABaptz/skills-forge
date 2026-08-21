@@ -43,6 +43,13 @@
             </div>
           </div>
         <% end %>
+        
+        <%= link_to destroy_user_session_path,
+                    data: { turbo_method: :delete },
+                    class: "home-navbar-link" do %>
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Déconnexion</span>
+        <% end %>
 
       <% else %>
         <%= link_to new_user_session_path,

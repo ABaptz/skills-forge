@@ -6,6 +6,15 @@
     <hr>
 
     <p>
+      <% if current_user.photo.attached? %>
+        <%= image_tag current_user.photo,
+                      class: "profile-avatar",
+                      alt: "Photo de profil" %>
+      <% end %>
+    </p>
+
+
+    <p>
       <strong>Prénom :</strong>
       <%= current_user.first_name.presence || "Non renseigné" %>
     </p>
