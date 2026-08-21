@@ -15,30 +15,6 @@
           <span>Mes Automations</span>
         <% end %>
 
-        <div class="dropdown">
-          <button class="home-navbar-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; border: 0; cursor: pointer;">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>Tutoriels</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <%= link_to tutorials_claude_path, class: "dropdown-item" do %>
-                <i class="fa-solid fa-comment-dots me-2"></i>Claude
-              <% end %>
-            </li>
-            <li>
-              <%= link_to tutorials_chatgpt_path, class: "dropdown-item" do %>
-                <i class="fa-solid fa-robot me-2"></i>ChatGPT
-              <% end %>
-            </li>
-            <li>
-              <%= link_to tutorials_gemini_path, class: "dropdown-item" do %>
-                <i class="fa-solid fa-gem me-2"></i>Gemini
-              <% end %>
-            </li>
-          </ul>
-        </div>
-
         <%= button_to chats_path,
                       method: :post,
                       class: "home-navbar-button" do %>
@@ -46,47 +22,47 @@
           <span>Nouvelle Automation</span>
         <% end %>
 
-        <%= link_to profile_path do %>
-          <div class="home-navbar-user">
-            <div class="home-navbar-avatar">
-              <% if current_user.username.present? %>
-                <%= current_user.username.first.upcase %>
-              <% else %>
-                <%= current_user.email.first.upcase %>
-              <% end %>
-            </div>
+        <details class="home-user-menu">
+          <summary class="home-user-menu-trigger">
+            <span class="home-navbar-avatar">
+              <%= current_user.username.presence&.first&.upcase ||
+                  current_user.email.first.upcase %>
+            </span>
 
-            <div class="home-navbar-user-information">
+            <i class="fa-solid fa-chevron-down"></i>
+          </summary>
+
+          <div class="home-user-dropdown">
+            <div class="home-user-dropdown-information">
               <strong>
                 <%= current_user.username.presence || "Utilisateur" %>
               </strong>
 
-              <span>
-                <%= current_user.email %>
-              </span>
+              <span><%= current_user.email %></span>
             </div>
+
+            <%= link_to "#", class: "home-user-dropdown-link" do %>
+              <i class="fa-solid fa-graduation-cap"></i>
+              Tutoriels
+            <% end %>
+
+            <%= button_to destroy_user_session_path,
+                          method: :delete,
+                          class: "home-user-dropdown-link home-logout-button",
+                          form: { data: { turbo: false } } do %>
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Déconnexion
+            <% end %>
           </div>
-        <% end %>
-        
-        <%= link_to destroy_user_session_path,
-                    data: { turbo_method: :delete },
-                    class: "home-navbar-link" do %>
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Déconnexion</span>
-        <% end %>
-
+        </details>
       <% else %>
-        <%= link_to new_user_session_path,
-                    class: "home-navbar-link" do %>
-          <i class="fa-solid fa-right-to-bracket"></i>
-          <span>Se connecter</span>
-        <% end %>
+        <%= link_to "Se connecter",
+                    new_user_session_path,
+                    class: "home-navbar-link" %>
 
-        <%= link_to new_user_registration_path,
-                    class: "home-navbar-button" do %>
-          <i class="fa-solid fa-user-plus"></i>
-          <span>Créer un compte</span>
-        <% end %>
+        <%= link_to "Créer un compte",
+                    new_user_registration_path,
+                    class: "home-navbar-button" %>
       <% end %>
     </nav>
   </div>
