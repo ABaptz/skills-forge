@@ -27,21 +27,28 @@
   </aside>
 
   <main class="automations-main">
-    <div class="d-flex justify-content-center mt-5 rounded">
-      <div class="list-group w-50 text-center">
-        <% @automations.each do |automation| %>
-          <%= link_to chat_path(automation.chat),
-                  class: "list-group-item list-group-item-action",
-                  aria: { current: "true" } do %>
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1 fw-bold"><%= automation.title %></h5>
-              <small><%= FR_LOCAL.format_date_standard(automation.created_at.to_date) %></small>
+    <div class="tutorial-steps">
+      <% @automations.each do |automation| %>
+        <%= link_to chat_path(automation.chat),
+                    class: "tutorial-step-card text-decoration-none",
+                    style: "display: block;",
+                    aria: { current: "true" } do %>
+          <div class="tutorial-step-body">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="tutorial-step-title mb-0"><%= automation.title %></h3>
+              <small class="text-muted flex-shrink-0"><%= FR_LOCAL.format_date_standard(automation.created_at.to_date) %></small>
             </div>
-            <p class="mb-1"><%= automation.description %></p>
-          <% end %>
+            <p class="tutorial-step-text mt-2 mb-0"><%= automation.description %></p>
+          </div>
         <% end %>
-        <%= button_to "New Automation", chats_path, class: "btn btn-primary mt-3" %>
-      </div>
+      <% end %>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+      <%= button_to chats_path, class: "tutorial-outro-cta border-0" do %>
+        <i class="fa-solid fa-plus"></i>
+        <span>Nouvelle automation</span>
+      <% end %>
     </div>
   </main>
   </div>
