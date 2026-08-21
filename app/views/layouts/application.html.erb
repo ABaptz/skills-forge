@@ -8,9 +8,6 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "abraham" %>
-    <%= javascript_include_tag "abraham" %>
-    <%= abraham_tour %>
 
     <%= yield :head %>
 
@@ -26,7 +23,6 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
     <div class="application-wrapper">
       <%= render "shared/navbar" %>

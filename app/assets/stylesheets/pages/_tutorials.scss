@@ -1,0 +1,343 @@
+// SkillForge - Fiches tutoriel
+
+.tutorial-page {
+  min-height: calc(100vh - 76px);
+  padding: 64px 0 96px;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(79, 70, 229, 0.08), transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.06), transparent 35%),
+    #f8fafc;
+  color: #0f172a;
+}
+
+.tutorial-container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.tutorial-back {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 24px;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4f46e5;
+  }
+}
+
+.tutorial-hero {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 48px;
+  padding: 32px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
+}
+
+.tutorial-hero-icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border-radius: 20px;
+  color: white;
+  font-size: 32px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+}
+
+.tutorial-hero-text {
+  flex: 1;
+}
+
+.tutorial-hero-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tutorial-hero-title {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+
+.tutorial-hero-description {
+  margin: 0;
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.tutorial-steps {
+  display: grid;
+  gap: 16px;
+}
+
+.tutorial-step-card {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px 28px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+}
+
+.tutorial-step-number {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4f46e5, #2563eb);
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.tutorial-step-body {
+  min-width: 0;
+}
+
+.tutorial-step-title {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.tutorial-step-text {
+  margin: 0;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.6;
+
+  strong {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  a {
+    color: #4f46e5;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.tutorial-step-hint {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+
+  i {
+    margin-top: 2px;
+    color: #4f46e5;
+  }
+}
+
+.tutorial-outro {
+  margin-top: 40px;
+  padding: 28px;
+  border: 1px solid #c7d2fe;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+  text-align: center;
+}
+
+.tutorial-outro-title {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.tutorial-outro-text {
+  margin: 0 0 20px;
+  color: #475569;
+  font-size: 15px;
+}
+
+.tutorial-outro-cta {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4f46e5, #2563eb);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.28);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s ease;
+
+  &:hover {
+    color: white;
+    transform: translateY(-2px);
+  }
+}
+
+// Accents specifiques a chaque plateforme
+.tutorial-page--claude {
+  .tutorial-hero-icon {
+    background: linear-gradient(135deg, #d97757, #b8543c);
+  }
+  .tutorial-hero-badge {
+    background: #fdf3ee;
+    color: #b8543c;
+  }
+}
+
+.tutorial-page--chatgpt {
+  .tutorial-hero-icon {
+    background: linear-gradient(135deg, #10a37f, #0d8265);
+  }
+  .tutorial-hero-badge {
+    background: #ecfdf5;
+    color: #0d8265;
+  }
+}
+
+.tutorial-page--gemini {
+  .tutorial-hero-icon {
+    background: linear-gradient(135deg, #4285f4, #1a73e8);
+  }
+  .tutorial-hero-badge {
+    background: #e8f0fe;
+    color: #1a73e8;
+  }
+}
+
+// Layout deux colonnes pour /automations : sidebar tutos a gauche + contenu a droite
+.automations-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.automations-sidebar {
+  position: sticky;
+  top: 96px;
+
+  @media (max-width: 900px) {
+    position: static;
+  }
+}
+
+.automations-sidebar-section {
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.automations-sidebar-title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 800;
+
+  i {
+    color: #4f46e5;
+    font-size: 16px;
+  }
+}
+
+.automations-sidebar-hint {
+  margin: 0 0 14px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.automations-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.automations-sidebar-link {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.15s ease;
+
+  i {
+    width: 18px;
+    color: #94a3b8;
+    font-size: 15px;
+    text-align: center;
+    transition: 0.15s ease;
+  }
+
+  &:hover {
+    background: #eef2ff;
+    color: #4f46e5;
+
+    i {
+      color: #4f46e5;
+    }
+  }
+}
+
+.automations-main {
+  min-width: 0;
+}

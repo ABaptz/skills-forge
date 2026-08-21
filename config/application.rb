@@ -24,6 +24,10 @@ module SkillsForge
 
     config.active_job.queue_adapter = :solid_queue
 
+    config.i18n.default_locale = :fr
+    config.i18n.available_locales = [:fr, :en]
+    config.i18n.fallbacks = { fr: [:en] }
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

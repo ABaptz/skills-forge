@@ -15,6 +15,30 @@
           <span>Mes automatisations</span>
         <% end %>
 
+        <div class="dropdown">
+          <button class="home-navbar-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent; border: 0; cursor: pointer;">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Tutoriels</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <%= link_to tutorials_claude_path, class: "dropdown-item" do %>
+                <i class="fa-solid fa-comment-dots me-2"></i>Claude
+              <% end %>
+            </li>
+            <li>
+              <%= link_to tutorials_chatgpt_path, class: "dropdown-item" do %>
+                <i class="fa-solid fa-robot me-2"></i>ChatGPT
+              <% end %>
+            </li>
+            <li>
+              <%= link_to tutorials_gemini_path, class: "dropdown-item" do %>
+                <i class="fa-solid fa-gem me-2"></i>Gemini
+              <% end %>
+            </li>
+          </ul>
+        </div>
+
         <%= button_to chats_path,
                       method: :post,
                       class: "home-navbar-button" do %>

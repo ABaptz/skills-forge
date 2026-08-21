@@ -1,0 +1,46 @@
+<section class="tutorial-page tutorial-page--<%= platform_key %>">
+  <div class="tutorial-container">
+    <%= link_to automations_path, class: "tutorial-back" do %>
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Retour à mes automatisations</span>
+    <% end %>
+
+    <div class="tutorial-hero">
+      <div class="tutorial-hero-icon">
+        <i class="<%= icon %>"></i>
+      </div>
+      <div class="tutorial-hero-text">
+        <span class="tutorial-hero-badge">Tutoriel · <%= platform_name %></span>
+        <h1 class="tutorial-hero-title"><%= title %></h1>
+        <p class="tutorial-hero-description"><%= intro %></p>
+      </div>
+    </div>
+
+    <ol class="tutorial-steps">
+      <% steps.each_with_index do |step, index| %>
+        <li class="tutorial-step-card">
+          <div class="tutorial-step-number"><%= index + 1 %></div>
+          <div class="tutorial-step-body">
+            <h2 class="tutorial-step-title"><%= step[:title] %></h2>
+            <p class="tutorial-step-text"><%= step[:text].html_safe %></p>
+            <% if step[:hint].present? %>
+              <div class="tutorial-step-hint">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span><%= step[:hint].html_safe %></span>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+
+    <div class="tutorial-outro">
+      <h3 class="tutorial-outro-title">C'est prêt !</h3>
+      <p class="tutorial-outro-text">Votre automation est installé dans <%= platform_name %>. Vous pouvez le lancer à tout moment.</p>
+      <%= link_to automations_path, class: "tutorial-outro-cta" do %>
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>Voir mes automatisations</span>
+      <% end %>
+    </div>
+  </div>
+</section>
