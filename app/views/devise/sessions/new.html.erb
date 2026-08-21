@@ -1,20 +1,125 @@
-<h2>Log in</h2>
+<div class="auth-page">
+  <div class="container auth-container">
+    <div class="auth-card">
+      <!-- Présentation -->
+      <section class="auth-presentation">
+        <div class="auth-presentation-content">
+          <div class="auth-logo">
+            <i class="fa-solid fa-hammer"></i>
+          </div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <span class="auth-eyebrow">
+            BIENVENUE SUR SKILLFORGE
+          </span>
+
+          <h1>
+            Transformez vos idées en Skills IA puissantes.
+          </h1>
+
+          <p>
+            Connectez-vous pour retrouver vos automatisations,
+            poursuivre vos conversations et créer de nouvelles Skills.
+          </p>
+
+          <div class="auth-benefits">
+            <div>
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Créez des Skills en quelques minutes</span>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Retrouvez toutes vos automatisations</span>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Échangez avec votre assistant IA</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Formulaire -->
+      <section class="auth-form-section">
+        <div class="auth-form-header">
+          <div class="auth-mobile-logo">
+            <i class="fa-solid fa-hammer"></i>
+          </div>
+
+          <h2>Connexion</h2>
+
+          <p>
+            Saisissez vos identifiants pour accéder à votre espace.
+          </p>
+        </div>
+
+        <%= simple_form_for(
+              resource,
+              as: resource_name,
+              url: session_path(resource_name),
+              html: { class: "auth-form" }
+            ) do |f| %>
+
+          <div class="auth-form-inputs">
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        label: "Adresse e-mail",
+                        placeholder: "votre@email.com",
+                        input_html: {
+                          autocomplete: "email",
+                          class: "auth-input"
+                        } %>
+
+            <%= f.input :password,
+                        required: true,
+                        label: "Mot de passe",
+                        placeholder: "Votre mot de passe",
+                        input_html: {
+                          autocomplete: "current-password",
+                          class: "auth-input"
+                        } %>
+          </div>
+
+          <div class="auth-options">
+            <% if devise_mapping.rememberable? %>
+              <%= f.input :remember_me,
+                          as: :boolean,
+                          label: "Se souvenir de moi",
+                          wrapper_html: {
+                            class: "auth-remember"
+                          } %>
+            <% end %>
+
+            <% if devise_mapping.recoverable? %>
+              <%= link_to "Mot de passe oublié ?",
+                          new_password_path(resource_name),
+                          class: "auth-forgot-link" %>
+            <% end %>
+          </div>
+
+          <div class="auth-form-actions">
+            <%= f.button :submit,
+                         "Se connecter",
+                         class: "auth-submit-button" %>
+          </div>
+        <% end %>
+
+        <% if devise_mapping.registerable? %>
+          <div class="auth-register">
+            <span>Vous n’avez pas encore de compte ?</span>
+
+            <%= link_to "Créer un compte",
+                        new_registration_path(resource_name) %>
+          </div>
+        <% end %>
+
+        <div class="auth-security">
+          <i class="fa-solid fa-lock"></i>
+          <span>Connexion sécurisée et données protégées</span>
+        </div>
+      </section>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
