@@ -97,18 +97,14 @@
             <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
           </div>
 
-          <div class="container">
-            <% if @chat.automations.last %>
-              <p><%= "Title : #{Automation.last.title}" %></p>
-              <p><%= "Description : #{Automation.last.description}" %></p>
-              <p><%= "Content : #{Automation.last.content}" %></p>
-            <% end %>
-          </div>
-
           <div id="new_message_container">
             <%= render "messages/form", chat: @chat, message: @message %>
           </div>
         </div>
+        <% if @chat.automations.last  %>
+        <%= render "chats/automation_content", automation: @chat.automations.last %>
+        <% end %>
       </section>
+
     </div>
   </div>
