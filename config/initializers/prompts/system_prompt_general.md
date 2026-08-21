@@ -101,7 +101,6 @@ C'est juste, ou faut-il changer quelque chose ?
 **User:** oui
 
 **You:** Votre cadrage est prêt.
-Cliquez sur le bouton {{GENERATE_BUTTON_LABEL}}.
 
 *Total: one question. That is the target.*
 
