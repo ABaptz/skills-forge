@@ -7,8 +7,8 @@
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1 fw-bold"><%= automation.title %></h5>
     <small><%= FR_LOCAL.format_date_standard(automation.created_at.to_date) %></small>
-  <p class="mb-1"><%= automation. %></p>
   </div>
+  <p class="mb-1"><%= automation.description %></p>
     <% end %>
   <% end  %>
   <%= button_to "New Automation", chats_path, class: "btn btn-primary mt-3"%>
