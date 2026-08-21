@@ -12,6 +12,8 @@ module SkillsForge
       generate.assets false
       generate.helper false
       generate.test_framework :test_unit, fixture: false
+      config.x.llm.thinking_effort = ENV.fetch("THINKING_EFFORT", "medium").to_sym # possible values "low", "medium", "high"
+      # ^here we are going to set the thinking effort of RubyLLM
     end
 
     # Initialize configuration defaults for originally generated Rails version.
@@ -21,6 +23,8 @@ module SkillsForge
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
+
+    config.active_job.queue_adapter = :solid_queue
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -1,0 +1,41 @@
+<footer class="home-footer">
+  <div class="container">
+    <div class="home-footer-content">
+      <div class="home-footer-presentation">
+        <%= link_to root_path, class: "home-footer-brand" do %>
+          <span class="home-footer-logo">
+            <i class="fa-solid fa-hammer"></i>
+          </span>
+
+          <span>SkillForge</span>
+        <% end %>
+
+        <p>
+          Transformez vos tâches répétitives en Skills puissantes
+          grâce à l’intelligence artificielle.
+        </p>
+      </div>
+
+      <nav class="home-footer-links">
+        <%= link_to "Accueil", root_path %>
+
+        <% if user_signed_in? %>
+          <%= link_to "Mes automatisations", automations_path %>
+        <% end %>
+
+        <%= link_to "Confidentialité", privacy_path %>
+      </nav>
+    </div>
+
+    <div class="home-footer-bottom">
+      <span>
+        © <%= Date.current.year %> SkillForge. Tous droits réservés.
+      </span>
+
+      <span>
+        Créé avec l’intelligence artificielle
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </span>
+    </div>
+  </div>
+</footer>

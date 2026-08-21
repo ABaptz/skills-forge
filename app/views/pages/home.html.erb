@@ -1,10 +1,186 @@
-<div class="container">
-  <div class="row justify-content-center m-5">
-    <div class="col-6 m-5">
-      <h1 class="text-center fs-1 m-5">Your next <strong>skill</strong> awaits you!</h1>
-      <div class="container d-flex justify-content-center">
-        <%= button_to "Create a new skill", chats_path, class: "btn btn-primary p-2" %>
+<div class="home-page">
+  <!-- HERO -->
+  <section class="home-hero">
+    <div class="container">
+      <div class="home-hero-grid">
+        <div class="home-hero-content">
+          <div class="home-hero-badge">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Propulsé par l’intelligence artificielle
+          </div>
+
+          <h1 class="home-hero-title">
+            <span class="home-title-first-line">
+            Transformez vos idées en
+            </span>
+
+            <span class="home-title-highlight">
+            Skills IA puissantes.
+            </span>
+          </h1>
+
+          <p class="home-hero-description">
+            Décrivez une tâche répétitive, échangez avec notre assistant
+            et générez une Skill structurée et réutilisable en quelques minutes.
+          </p>
+
+          <div class="home-hero-actions">
+            <% if user_signed_in? %>
+              <%= button_to chats_path,
+                            method: :post,
+                            class: "home-primary-button" do %>
+                <i class="fa-solid fa-plus"></i>
+                Créer une nouvelle Skill
+              <% end %>
+
+              <%= link_to automations_path,
+                          class: "home-secondary-button" do %>
+                Voir mes Skills
+                <i class="fa-solid fa-arrow-right"></i>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path,
+                          class: "home-primary-button" do %>
+                Commencer
+                <i class="fa-solid fa-arrow-right"></i>
+              <% end %>
+
+              <%= link_to "Comment ça marche ?",
+                          "#how-it-works",
+                          class: "home-secondary-button" %>
+            <% end %>
+          </div>
+
+          <div class="home-hero-benefits">
+            <span>
+              <i class="fa-solid fa-circle-check"></i>
+              Aucune compétence technique requise
+            </span>
+
+            <span>
+              <i class="fa-solid fa-circle-check"></i>
+              Création en quelques minutes
+            </span>
+          </div>
+        </div>
+
+        <!-- EXEMPLE DE SKILL -->
+        <div class="home-skill-card">
+          <div class="home-skill-card-header">
+            <div class="home-skill-icon">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <div>
+              <span>SKILL GÉNÉRÉE</span>
+              <h2>Analyse hebdomadaire des newsletters</h2>
+            </div>
+
+            <div class="home-skill-status">
+              <span></span>
+              Prête
+            </div>
+          </div>
+
+          <div class="home-skill-card-body">
+            <div class="home-skill-section">
+              <h3>OBJECTIF</h3>
+
+              <p>
+                Analyser les newsletters reçues pendant la semaine et
+                identifier les informations essentielles.
+              </p>
+            </div>
+
+            <div class="home-skill-section">
+              <h3>PROCESSUS</h3>
+
+              <div class="home-workflow-item">
+                <span>1</span>
+                Lire et résumer chaque newsletter
+              </div>
+
+              <div class="home-workflow-item">
+                <span>2</span>
+                Identifier les informations importantes
+              </div>
+
+              <div class="home-workflow-item">
+                <span>3</span>
+                Classer les sujets par niveau de priorité
+              </div>
+            </div>
+
+            <div class="home-skill-card-footer">
+              <span>
+                <i class="fa-solid fa-robot"></i>
+                OpenAI
+              </span>
+
+              <span>
+                <i class="fa-regular fa-clock"></i>
+                Générée à l’instant
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="home-steps" id="how-it-works">
+    <div class="container">
+      <div class="home-section-heading">
+        <span>COMMENT ÇA MARCHE ?</span>
+
+        <h2>Créez votre Skill en trois étapes</h2>
+
+        <p>
+          Passez de votre idée à une automatisation IA structurée.
+        </p>
+      </div>
+
+      <% steps = [
+        {
+          number: "01",
+          icon: "fa-regular fa-message",
+          title: "Décrivez votre tâche",
+          description: "Expliquez la tâche répétitive que vous souhaitez automatiser."
+        },
+        {
+          number: "02",
+          icon: "fa-solid fa-wand-magic-sparkles",
+          title: "Précisez votre besoin",
+          description: "Échangez avec l’assistant pour définir vos objectifs et vos contraintes."
+        },
+        {
+          number: "03",
+          icon: "fa-solid fa-bolt",
+          title: "Générez votre Skill",
+          description: "Obtenez des instructions structurées et réutilisables."
+        }
+      ] %>
+
+      <div class="row g-4">
+        <% steps.each do |step| %>
+          <div class="col-md-4">
+            <article class="home-step-card">
+              <span class="home-step-number">
+                <%= step[:number] %>
+              </span>
+
+              <div class="home-step-icon">
+                <i class="<%= step[:icon] %>"></i>
+              </div>
+
+              <h3><%= step[:title] %></h3>
+
+              <p><%= step[:description] %></p>
+            </article>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
 </div>

@@ -1,7 +1,11 @@
 class ChatsController < ApplicationController
+  def show
+    @chat = current_user.chats.find(params[:id])
+    @message = Message.new
+  end
 
   def create
-    @chat = Chat.new(title: "Untitled")
+    @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @chat.user = current_user
 
     if @chat.save
