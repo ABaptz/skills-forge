@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :photo
+
   has_many :chats, dependent: :destroy
   has_many :automations, through: :chats, dependent: :destroy
   validates :username, presence: true
