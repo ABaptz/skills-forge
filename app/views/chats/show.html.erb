@@ -107,6 +107,10 @@
           <% end %>
         </div>
       </section>
-
+      <div>
+        <% if @chat.automations.last %>
+          <%= link_to "Obtenir mon Automation", automation_path(@chat.automations.last) %>
+        <% end %>
+      </div>
     </div>
   </div>
