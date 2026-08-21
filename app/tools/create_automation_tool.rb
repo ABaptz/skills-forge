@@ -3,7 +3,7 @@ class CreateAutomationTool < RubyLLM::Tool
   param :title, desc: "The title of the automation, it should be written in Markdown"
   param :description, desc: "The description of the automation, it should be written in Markdown"
   param :content, desc: "The content of the automation, it should be written in Markdown"
-  param :llm_provider, desc: "The llm_provider of the automation, it should be written in Markdown"
+  param :llm_provider, desc: "One of: OpenAI, Anthropic, Google. The assistant the user picked."
 
   def initialize(chat:)
     @chat = chat
