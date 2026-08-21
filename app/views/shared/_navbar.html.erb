@@ -43,10 +43,28 @@
               </div>
             <% end %>
 
-            <%= link_to "#", class: "home-user-dropdown-link" do %>
-              <i class="fa-solid fa-graduation-cap"></i>
-              Tutoriels
-            <% end %>
+            <details>
+              <summary class="home-user-dropdown-link" style="cursor: pointer;">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Tutoriels
+                <i class="fa-solid fa-chevron-down ms-auto"></i>
+              </summary>
+
+              <%= link_to tutorials_claude_path, class: "home-user-dropdown-link ps-4" do %>
+              <i class="fa-solid fa-comment-dots"></i>
+                Claude
+              <% end %>
+
+              <%= link_to tutorials_chatgpt_path, class: "home-user-dropdown-link ps-4" do %>
+              <i class="fa-solid fa-robot"></i>
+                ChatGPT
+              <% end %>
+
+              <%= link_to tutorials_gemini_path, class: "home-user-dropdown-link ps-4" do %>
+              <i class="fa-solid fa-gem"></i>
+                Gemini
+              <% end %>
+            </details>
 
             <%= button_to destroy_user_session_path,
                           method: :delete,

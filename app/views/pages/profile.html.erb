@@ -1,49 +1,73 @@
+<div class="chat-page">
+  <div class="container chat-container">
+    <div class="chat-panel">
+      <div class="chat-panel-header">
+        <div class="chat-assistant-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div>
+          <h2>Mon profil</h2>
+          <p>Vos informations personnelles</p>
+        </div>
+      </div>
 
-<div class="container py-5">
-  <div class="card p-4 shadow-sm">
-    <h1>Mon profil</h1>
+      <div class="p-4">
+        <% if current_user.photo.attached? %>
+          <div class="text-center">
+            <%= image_tag current_user.photo,
+                          class: "profile-avatar",
+                          alt: "Photo de profil" %>
+          </div>
+        <% end %>
 
-    <hr>
+        <div class="home-workflow-item">
+          <span><i class="fas fa-user"></i></span>
+          <div>
+            <strong>Prénom :</strong>
+            <%= current_user.first_name.presence || "Non renseigné" %>
+          </div>
+        </div>
 
-    <p>
-      <% if current_user.photo.attached? %>
-        <%= image_tag current_user.photo,
-                      class: "profile-avatar",
-                      alt: "Photo de profil" %>
-      <% end %>
-    </p>
+        <div class="home-workflow-item">
+          <span><i class="fas fa-user"></i></span>
+          <div>
+            <strong>Nom :</strong>
+            <%= current_user.last_name.presence || "Non renseigné" %>
+          </div>
+        </div>
 
+        <div class="home-workflow-item">
+          <span><i class="fas fa-at"></i></span>
+          <div>
+            <strong>Nom d'utilisateur :</strong>
+            <%= current_user.username.presence || "Non renseigné" %>
+          </div>
+        </div>
 
-    <p>
-      <strong>Prénom :</strong>
-      <%= current_user.first_name.presence || "Non renseigné" %>
-    </p>
+        <div class="home-workflow-item">
+          <span><i class="fas fa-envelope"></i></span>
+          <div>
+            <strong>Email :</strong>
+            <%= current_user.email %>
+          </div>
+        </div>
 
-    <p>
-      <strong>Nom :</strong>
-      <%= current_user.last_name.presence || "Non renseigné" %>
-    </p>
+        <div class="home-workflow-item">
+          <span><i class="fas fa-briefcase"></i></span>
+          <div>
+            <strong>Métier :</strong>
+            <%= current_user.job_title.presence || "Non renseigné" %>
+          </div>
+        </div>
 
-    <p>
-      <strong>Nom d'utilisateur :</strong>
-      <%= current_user.username.presence || "Non renseigné" %>
-    </p>
-
-    <p>
-      <strong>Email :</strong>
-      <%= current_user.email %>
-    </p>
-
-    <p>
-      <strong>Métier :</strong>
-      <%= current_user.job_title.presence || "Non renseigné" %>
-    </p>
-
-    <p>
-      <strong>LLM préféré :</strong>
-      <%= current_user.preferred_llm_provider.presence || "Non renseigné" %>
-    </p>
+        <div class="home-workflow-item">
+          <span><i class="fas fa-robot"></i></span>
+          <div>
+            <strong>LLM préféré :</strong>
+            <%= current_user.preferred_llm_provider.presence || "Non renseigné" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-

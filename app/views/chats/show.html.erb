@@ -101,7 +101,7 @@
             <%= render "messages/form", chat: @chat, message: @message %>
           </div>
         </div>
-        <div class="container" id="<%= dom_id(@chat, "automation") %>">
+        <div class="container text-secondary" id="<%= dom_id(@chat, "automation") %>">
           <% if @chat.automations.last  %>
             <%= render "chats/automation_content", automation: @chat.automations.last %>
           <% end %>
