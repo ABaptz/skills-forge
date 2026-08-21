@@ -11,12 +11,20 @@ sylvie = User.create!(
   email: "sylvie222@example.com",
   username: "Sylvie222",
   password: "password123",
+  first_name: "Sylvie",
+  last_name: "Dupont",
+  job_title: "Office Manager",
+  preferred_llm_provider: "OpenAI"
 )
 
 yann = User.create!(
   email: "yann777@example.com",
   username: "Yann777",
   password: "password567",
+  first_name: "Yann",
+  last_name: "Martin",
+  job_title: "Consultant",
+  preferred_llm_provider: "Anthropic"
 )
 
 puts "Creating chats..."
