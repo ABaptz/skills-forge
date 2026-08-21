@@ -8,7 +8,7 @@ class Automation < ApplicationRecord
   after_commit :broadcast_on_chat_show
 
   AUTOMATION_DESCRIPTION = <<~PROMPT
-    Generate a short summarize of the automation based on its content
+    Generate a short summary of the automation based on its content
   PROMPT
 
   private

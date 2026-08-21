@@ -1,16 +1,48 @@
-<div class="d-flex justify-content-center mt-5 rounded">
-<div class="list-group w-50 text-center">
-  <% @automations.each do |automation| %>
-    <%= link_to chat_path(automation.chat),
-            class: "list-group-item list-group-item-action",
-            aria: { current: "true" } do %>
-  <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1 fw-bold"><%= automation.title %></h5>
-    <small><%= FR_LOCAL.format_date_standard(automation.created_at.to_date) %></small>
+<div class="container">
+  <div class="automations-layout">
+    <aside class="automations-sidebar">
+    <div class="automations-sidebar-section">
+      <h3 class="automations-sidebar-title">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Installer un skill
+      </h3>
+      <p class="automations-sidebar-hint">
+        Suivez le tutoriel adapté à votre assistant.
+      </p>
+      <nav class="automations-sidebar-nav">
+        <%= link_to tutorials_claude_path, class: "automations-sidebar-link" do %>
+          <i class="fa-solid fa-comment-dots"></i>
+          <span>Claude</span>
+        <% end %>
+        <%= link_to tutorials_chatgpt_path, class: "automations-sidebar-link" do %>
+          <i class="fa-solid fa-robot"></i>
+          <span>ChatGPT</span>
+        <% end %>
+        <%= link_to tutorials_gemini_path, class: "automations-sidebar-link" do %>
+          <i class="fa-solid fa-gem"></i>
+          <span>Gemini</span>
+        <% end %>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="automations-main">
+    <div class="d-flex justify-content-center mt-5 rounded">
+      <div class="list-group w-50 text-center">
+        <% @automations.each do |automation| %>
+          <%= link_to chat_path(automation.chat),
+                  class: "list-group-item list-group-item-action",
+                  aria: { current: "true" } do %>
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1 fw-bold"><%= automation.title %></h5>
+              <small><%= FR_LOCAL.format_date_standard(automation.created_at.to_date) %></small>
+            </div>
+            <p class="mb-1"><%= automation.description %></p>
+          <% end %>
+        <% end %>
+        <%= button_to "New Automation", chats_path, class: "btn btn-primary mt-3" %>
+      </div>
+    </div>
+  </main>
   </div>
-  <p class="mb-1"><%= automation.description %></p>
-    <% end %>
-  <% end  %>
-  <%= button_to "New Automation", chats_path, class: "btn btn-primary mt-3"%>
-</div>
 </div>
