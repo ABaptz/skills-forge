@@ -12,14 +12,14 @@
       <% if user_signed_in? %>
         <%= link_to automations_path, class: "home-navbar-link" do %>
           <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <span>Mes automatisations</span>
+          <span>Mes Automations</span>
         <% end %>
 
         <%= button_to chats_path,
                       method: :post,
                       class: "home-navbar-button" do %>
           <i class="fa-solid fa-plus"></i>
-          <span>Nouvelle Skill</span>
+          <span>Nouvelle Automation</span>
         <% end %>
 
         <div class="home-navbar-user">
@@ -36,11 +36,17 @@
               <%= current_user.username.presence || "Utilisateur" %>
             </strong>
 
-            <span>
-              <%= current_user.email %>
-            </span>
+            <span><%= current_user.email %></span>
           </div>
         </div>
+
+        <%= button_to destroy_user_session_path,
+                      method: :delete,
+                      class: "home-navbar-logout",
+                      form: { data: { turbo: false } } do %>
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Déconnexion</span>
+        <% end %>
       <% else %>
         <%= link_to new_user_session_path,
                     class: "home-navbar-link" do %>
