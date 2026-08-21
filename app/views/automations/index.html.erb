@@ -1,13 +1,13 @@
 <div class="d-flex justify-content-center mt-5 rounded">
 <div class="list-group w-50 text-center">
   <% @automations.each do |automation| %>
-    <%= link_to automation_path(automation),
+    <%= link_to chat_path(automation.chat),
             class: "list-group-item list-group-item-action",
             aria: { current: "true" } do %>
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1 fw-bold"><%= automation.title %></h5>
     <small><%= FR_LOCAL.format_date_standard(automation.created_at.to_date) %></small>
-  <p class="mb-1">Résumé automation</p>
+  <p class="mb-1"><%= automation. %></p>
   </div>
     <% end %>
   <% end  %>

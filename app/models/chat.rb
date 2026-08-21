@@ -8,7 +8,7 @@ class Chat < ApplicationRecord
   TITLE_PROMPT = <<~PROMPT
     Generate a short, descriptive, 3-to-6-word title that summarizes the user question for a chat conversation.
   PROMPT
-  def llm 
+  def llm
   # this method takes the parameter we set in the config to easily adapt the thinking effort
     RubyLLM.chat.with_thinking(effort: Rails.application.config.x.llm.thinking_effort)
   end
