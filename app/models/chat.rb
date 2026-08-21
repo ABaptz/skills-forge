@@ -10,7 +10,8 @@ class Chat < ApplicationRecord
   PROMPT
   def llm
   # this method takes the parameter we set in the config to easily adapt the thinking effort
-    RubyLLM.chat.with_thinking(effort: Rails.application.config.x.llm.thinking_effort)
+  # RubyLLM.chat.with_thinking(effort: Rails.application.config.x.llm.thinking_effort)
+  RubyLLM.chat.with_thinking(effort: 'none')
   end
 
   def generate_title_from_first_message
