@@ -22,7 +22,7 @@
         </div>
 
         <p class="chat-sidebar-label">
-          NOUVELLE SKILL
+          NOUVELLE AUTOMATION
         </p>
 
         <h1>
@@ -101,9 +101,11 @@
             <%= render "messages/form", chat: @chat, message: @message %>
           </div>
         </div>
-        <% if @chat.automations.last  %>
-        <%= render "chats/automation_content", automation: @chat.automations.last %>
-        <% end %>
+        <div class="container" id="<%= dom_id(@chat, "automation") %>">
+          <% if @chat.automations.last  %>
+            <%= render "chats/automation_content", automation: @chat.automations.last %>
+          <% end %>
+        </div>
       </section>
 
     </div>
