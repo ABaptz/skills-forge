@@ -2,4 +2,8 @@
   <p><%= "Title : #{automation.title}" %></p>
   <p><%= "Description : #{automation.description}" %></p>
   <p><%= "Content : #{automation.content}" %></p>
+
+ <% if (tutorial = tutorial_path_for(automation)) %>
+    <%= link_to "Comment installer cette automation ?", tutorial, class: "home-navbar-button" %>
+  <% end %>
 <% end %>
