@@ -21,6 +21,7 @@ gem "kramdown"
 gem "rouge"
 gem "kramdown-parser-gfm"
 gem 'r18n-core'
+gem 'abraham'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

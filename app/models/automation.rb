@@ -6,7 +6,7 @@ class Automation < ApplicationRecord
   validates :description, presence: true
 
   AUTOMATION_DESCRIPTION = <<~PROMPT
-    Generate a short summarize of the automation based on its content
+    Generate a short summary of the automation based on its content
   PROMPT
 
   private
