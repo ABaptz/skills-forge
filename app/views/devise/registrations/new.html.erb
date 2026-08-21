@@ -9,9 +9,11 @@
 
   <%= f.input :last_name %>
 
-  <%= f.input :username %>
+<%= f.input :username %>
 
-  <%= f.input :job_title %>
+<%= f.input :photo, as: :file %>
+
+<%= f.input :job_title %>
 
   <%= f.input :preferred_llm_provider,
               collection: ["Google", "Anthropic", "OpenAI"],
